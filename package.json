@@ -1,7 +1,7 @@
 {
     "name": "FiakoBlocks-Launcher",
     "preductname": "FiakoBlocks Launcher",
-    "version": "2.0.7",
+    "version": "1.0.0",
     "description": "Launcher Mincraft pour le serveur FiakoBlocks",
     "main": "src/app.js",
     "author": {
@@ -22,7 +22,6 @@
         "ignore": "**/test"
     },
     "dependencies": {
-        "discord.js": "^14.14.1",
         "electron-updater": "^6.1.8",
         "minecraft-java-core": "^3.10.4",
         "node-bdd": "^2.0.4",
