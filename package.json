@@ -14,7 +14,7 @@
         "start": "cross-env-shell NODE_ENV=dev electron .",
         "dev": "cross-env-shell DEV_TOOL=open nodemon --exec npm start",
         "build": "node build.js --obf=true --build=platform",
-        "icon": "node build.js --icon=https://i.imgur.com/fX2WbeD.png"
+        "icon": "node build.js --icon=https://serveur.piksassistance.com/files/icon.png"
     },
     "license": "CCANC",
     "nodemonConfig": {
