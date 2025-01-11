@@ -1,15 +1,15 @@
 {
-    "name": "Selvania-Launcher",
+    "name": "Fiakotopia-Launcher",
     "preductname": "Selvania Launcher",
     "version": "2.0.7",
     "description": "Launcher Mincraft pour le serveur Selvania",
     "main": "src/app.js",
     "author": {
-        "name": "luuxis, Inc.",
-        "email": "contact@luuxis.fr",
-        "url": "https://github.com/luuxis"
+        "name": "Devory INC.",
+        "email": "tvdegreg@gmail.com",
+        "url": "https://panel.piksassistance.com/status"
     },
-    "url": "http://launcher.luuxis.fr",
+    "url": "https://serveur.piksassistance.com",
     "scripts": {
         "start": "cross-env-shell NODE_ENV=dev electron .",
         "dev": "cross-env-shell DEV_TOOL=open nodemon --exec npm start",
