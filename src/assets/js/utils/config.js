@@ -40,7 +40,7 @@ class Config {
     async getNews() {
         let config = await this.GetConfig() || {}
 
-        // Vérifie d'abord si Discord est configuré
+        // Vérifie d'abord si Discord est configuré !
         if (config.discord?.enabled) {
             try {
                 const response = await nodeFetch(
