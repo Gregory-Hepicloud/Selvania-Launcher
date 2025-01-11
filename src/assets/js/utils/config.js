@@ -40,6 +40,37 @@ class Config {
     async getNews() {
         let config = await this.GetConfig() || {}
 
+        // Vérifie d'abord si Discord est configuré
+        if (config.discord?.enabled) {
+            try {
+                const response = await nodeFetch(
+                    `https://discord.com/api/v10/channels/${config.discord.channelId}/messages?limit=${config.discord.limit || 10}`,
+                    {
+                        headers: {
+                            'Authorization': `Bot ${config.discord.token}`,
+                            'Content-Type': 'application/json',
+                        }
+                    }
+                );
+
+                if (response.ok) {
+                    const messages = await response.json();
+                    return messages.map(message => ({
+                        title: this.extractDiscordTitle(message.content),
+                        content: message.content,
+                        author: message.author.username,
+                        publish_date: message.timestamp,
+                        attachments: message.attachments
+                    }));
+                }
+                console.error('Échec de récupération des news Discord, passage au mode standard');
+            } catch (error) {
+                console.error('Erreur Discord:', error);
+                // Continue vers les autres méthodes si Discord échoue
+            }
+        }
+
+        // Si Discord a échoué ou n'est pas configuré, continue avec RSS ou JSON
         if (config.rss) {
             return new Promise((resolve, reject) => {
                 nodeFetch(config.rss).then(async config => {
@@ -72,6 +103,17 @@ class Config {
                 })
             })
         }
+    }
+
+    extractDiscordTitle(content) {
+        const lines = content.split('\n');
+        for (const line of lines) {
+            const trimmedLine = line.trim();
+            if (trimmedLine) {
+                return trimmedLine;
+            }
+        }
+        return 'News';
     }
 }
 
